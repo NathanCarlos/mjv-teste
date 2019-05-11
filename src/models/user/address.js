@@ -1,7 +1,7 @@
-const sqlize = require('../../../config/sequelize')
+const sqlize = require('../../../database/sequelize')
 const Sequelize = require('sequelize')
 
-const Address = sqlize.define('adresses', {
+const Address = sqlize.define('addresses', {
   postcode: { type: Sequelize.STRING(9), allowNull: false },
   street: { type: Sequelize.STRING(100), allowNull: false },
   number: { type: Sequelize.INTEGER, allowNull: false, validate: { isInt: true } },
