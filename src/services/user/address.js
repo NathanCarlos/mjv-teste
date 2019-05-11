@@ -5,7 +5,7 @@ const Sequelize = require('../../../database/sequelize')
 class AddressServices {
   static async getAddresss () {
     try {
-      let response = await Address.findAll({})
+      const response = await Address.findAll({})
       return response
     } catch (err) {
       throw err.message
@@ -14,7 +14,7 @@ class AddressServices {
 
   static async getAddresssById (id) {
     try {
-      let response = await Address.findByPk(id)
+      const response = await Address.findByPk(id)
       return response
     } catch (err) {
       throw err.message
@@ -23,7 +23,7 @@ class AddressServices {
 
   static async createAddress (postcode, street, number, neighborhood, complement, city, state) {
     try {
-      let response = await Sequelize.transaction(t => {
+      const response = await Sequelize.transaction(t => {
         return Address.create({
           postcode,
           street,
@@ -41,7 +41,7 @@ class AddressServices {
   }
   static async updateAddress (id, postcode, street, number, neighborhood, complement, city, state) {
     try {
-      let response = Sequelize.transaction(t => {
+      const response = Sequelize.transaction(t => {
         return Address.update(
           {
             postcode,

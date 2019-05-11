@@ -7,7 +7,7 @@ const crypto = require('../../utils/crypto')
 class UserServices {
   static async getUsers () {
     try {
-      let response = await User.findAll({})
+      const response = await User.findAll({})
       return response
     } catch (err) {
       throw err.message
@@ -16,7 +16,7 @@ class UserServices {
 
   static async getUserById (id) {
     try {
-      let response = await User.findByPk(id)
+      const response = await User.findByPk(id)
       return response
     } catch (err) {
       throw err.message
@@ -25,7 +25,7 @@ class UserServices {
 
   static async createTypeUser (description) {
     try {
-      const response = UserType.create({
+      const response = await UserType.create({
         description
       })
       return response
@@ -59,7 +59,7 @@ class UserServices {
           addressId
         })
       })
-      // response.password = '******'
+      response.password = '******'
       return response
     } catch (err) {
       throw err.message
@@ -67,7 +67,7 @@ class UserServices {
   }
   static async updateUser (id, firstname, lastname, password, email, telephone, addressId) {
     try {
-      let response = Sequelize.transaction(t => {
+      const response = await Sequelize.transaction(t => {
         return User.update(
           {
             firstname,
@@ -87,7 +87,7 @@ class UserServices {
   }
   static async deleteUser (id) {
     try {
-      let response = Sequelize.transaction(t => {
+      const response = await Sequelize.transaction(t => {
         return User.destroy({
           where: { id }
         })
@@ -100,7 +100,7 @@ class UserServices {
   static async authUser (email, password) {
     try {
       password = await crypto(password)
-      let response = await User.findAll({
+      const response = await User.findAll({
         where: { email, password }
       })
       return response
@@ -109,7 +109,7 @@ class UserServices {
     }
   }
   static async transformUser (user, token) {
-    let newUser = {
+    const newUser = {
       token,
       id: user.id,
       name: user.firstname,
