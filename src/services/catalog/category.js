@@ -20,12 +20,13 @@ class CategoryServices {
     }
   }
 
-  static async createCategory (status, name) {
+  static async createCategory (status, name, image) {
     try {
       const response = await Sequelize.transaction(t => {
         return Category.create({
           status,
-          name
+          name,
+          image
         })
       })
       return response
@@ -34,12 +35,13 @@ class CategoryServices {
     }
   }
 
-  static async updateCategory (id, status, name) {
+  static async updateCategory (id, status, name, image) {
     try {
       const response = await Sequelize.transaction(t => {
         return Category.update({
           status,
-          name
+          name,
+          image
         },
         { where: { id } })
       })
