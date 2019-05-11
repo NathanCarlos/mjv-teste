@@ -1,8 +1,16 @@
 const populateUserType = require('./userType')
 const populateUser = require('./user')
+const populateCategory = require('./category')
+const populateProduct = require('./product')
+const sequelize = require('../../database/sequelize')
 
-populateUserType().then(result => {
-  populateUser().then(response => {
-    console.log('All works!')
+const sync = new Promise(
+  function (resolve, reject) {
+    resolve(sequelize.sync())
   })
+sync.then(result => {
+  Promise.all([populateUserType(), populateUser(), populateCategory(), populateProduct()]).then(
+    result => {
+      console.log('All Populated')
+    })
 })
