@@ -1,9 +1,9 @@
 const express = require('express')
-const UserService = require('../services/user/user')
+const UserService = require('../../services/user/user')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const config = require('../../config/globalConfig')
-const tokenVerify = require('../middlewares/tokenVerify')
+const config = require('../../../config/globalConfig')
+const tokenVerify = require('../../middlewares/tokenVerify')
 
 router.get('/', tokenVerify, async (req, res) => {
   try {
