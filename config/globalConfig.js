@@ -1,0 +1,4 @@
+module.exports = {
+  tokenSecret: 'DSAKJHDSAUIDHSAJ32131321KJDS',
+  secret: 'SKAKH3218D9SAHJ321KODSA090321'
+}
