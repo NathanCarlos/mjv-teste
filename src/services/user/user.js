@@ -23,6 +23,15 @@ class UserServices {
     }
   }
 
+  static async getUsersType () {
+    try {
+      const response = await UserType.findAll({})
+      return response
+    } catch (err) {
+      throw err.message
+    }
+  }
+
   static async createTypeUser (description) {
     try {
       const response = await UserType.create({
