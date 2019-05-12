@@ -9,8 +9,10 @@ const sync = new Promise(
     resolve(sequelize.sync())
   })
 sync.then(result => {
-  Promise.all([populateUserType(), populateUser(), populateCategory(), populateProduct()]).then(
-    result => {
-      console.log('All Populated')
-    })
+  populateCategory().then(result => {
+    Promise.all([populateUserType(), populateUser(), populateProduct()]).then(
+      result => {
+        console.log('All Populated')
+      })
+  })
 })

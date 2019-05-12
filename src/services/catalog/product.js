@@ -1,5 +1,7 @@
 const Product = require('../../models/catalog/product')
 const Sequelize = require('../../../database/sequelize')
+const CategoryProduct = require('../../models/catalog/category_product')
+const CategoryProductServices = require('./categoryProduct')
 
 class ProductServices {
   static async getProducts () {
@@ -22,14 +24,19 @@ class ProductServices {
 
   static async getProductsByCategoryId (id) {
     try {
-      const response = await Product.findAll({ where: { categoryId: id } })
+      const response = await Product.findAll({
+        include: [{
+          model: CategoryProduct,
+          where: { categoryId: id }
+        }]
+      })
       return response
     } catch (err) {
       throw err.message
     }
   }
 
-  static async createProduct (status, sku, name, content, price, quantity, image = '', categoryId) {
+  static async createProduct (status, sku, name, content, price, quantity, image = '', categorys) {
     try {
       const response = await Sequelize.transaction(t => {
         return Product.create({
@@ -39,17 +46,17 @@ class ProductServices {
           content,
           price,
           quantity,
-          image,
-          categoryId
+          image
         })
       })
+      await CategoryProductServices.createManyCategoryProduct(categorys, response.id)
       return response
     } catch (err) {
       throw err.message
     }
   }
 
-  static async updateProduct (id, status, sku, name, content, price, quantity, categoryId) {
+  static async updateProduct (id, status, sku, name, content, price, quantity) {
     try {
       const response = await Sequelize.transaction(t => {
         return Product.update({
@@ -58,8 +65,7 @@ class ProductServices {
           name,
           content,
           price,
-          quantity,
-          categoryId
+          quantity
         },
         { where: { id } })
       })
@@ -71,6 +77,8 @@ class ProductServices {
 
   static async deleteProduct (id) {
     try {
+      await CategoryProductServices.deleteProductCategory(id)
+
       const response = await Sequelize.transaction(t => {
         return Product.destroy({
           where: { id }

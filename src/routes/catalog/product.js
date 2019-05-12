@@ -40,7 +40,7 @@ router.post('/create', tokenVerify, async (req, res) => {
       req.body.price,
       req.body.quantity,
       req.body.image,
-      req.body.categoryId
+      req.body.categorys
     )
     res.status(201).send(response)
   } catch (err) {
@@ -57,8 +57,7 @@ router.put('/update/:id', tokenVerify, async (req, res) => {
       req.body.name,
       req.body.content,
       req.body.price,
-      req.body.quantity,
-      req.body.categoryId
+      req.body.quantity
     )
     res.status(200).send(response)
   } catch (err) {

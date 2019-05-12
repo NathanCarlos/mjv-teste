@@ -1,6 +1,5 @@
 const sqlize = require('../../../database/sequelize')
 const Sequelize = require('sequelize')
-const Category = require('./category')
 
 const Product = sqlize.define('products', {
   status: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true },
@@ -9,11 +8,7 @@ const Product = sqlize.define('products', {
   content: { type: Sequelize.STRING(2000), allowNull: false },
   price: { type: Sequelize.FLOAT, allowNull: false, validate: { isFloat: true } },
   quantity: { type: Sequelize.FLOAT, allowNull: false, validate: { isFloat: true }, defaultValue: 0 },
-  image: { type: Sequelize.STRING },
-  categoryId: { type: Sequelize.INTEGER, allowNull: false }
+  image: { type: Sequelize.STRING }
 })
-
-Category.hasMany(Product)
-Product.belongsTo(Category)
 
 module.exports = Product
