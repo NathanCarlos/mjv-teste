@@ -1,4 +1,4 @@
-**MJV-Front-end - Full Stack ** Escolhei as seguintes funcionalidades para realizar o teste:
+**MJV-Back-end - Full Stack ** Escolhei as seguintes funcionalidades para realizar o teste:
 * Menu de Categorias
 * Lista de Produtos(Vitrine)
 * Busca de Produtos
