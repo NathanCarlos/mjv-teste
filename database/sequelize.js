@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 let DB = 'mjv'
 
-const sequelize = new Sequelize(DB, 'root', 'root', {
+const sequelize = new Sequelize(DB, 'root', null, {
   dialect: 'mysql',
   operatorsAliases: false,
   host: process.env.DB_HOST || 'localhost',

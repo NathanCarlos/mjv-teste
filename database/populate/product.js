@@ -9,7 +9,7 @@ module.exports = async () => {
     2980,
     15,
     'https://images-americanas.b2w.io/produtos/01/00/item/132897/6/132897606_1GG.png',
-    1
+    [1, 6]
   )
   await productService.createProduct(
     1,
@@ -19,7 +19,7 @@ module.exports = async () => {
     1850,
     25,
     'https://images-americanas.b2w.io/produtos/01/00/item/133621/8/133621821_1GG.png',
-    1
+    [1, 6]
   )
   await productService.createProduct(
     1,
@@ -29,7 +29,7 @@ module.exports = async () => {
     899,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/oferta/134256/1/134256132_1GG.jpg',
-    2
+    [2, 6]
   )
   await productService.createProduct(
     1,
@@ -39,7 +39,7 @@ module.exports = async () => {
     999,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/offers/01/00/item/134186/8/134186808_1GG.jpg',
-    2
+    [2, 6]
   )
   await productService.createProduct(
     1,
@@ -49,7 +49,7 @@ module.exports = async () => {
     99,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/offers/01/00/item/123064/6/123064653_1GG.jpg',
-    3
+    [3, 6]
   )
   await productService.createProduct(
     1,
@@ -59,7 +59,7 @@ module.exports = async () => {
     889,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/oferta/22934/0/22934001_1GG.jpg',
-    4
+    [4, 6]
   )
   await productService.createProduct(
     1,
@@ -69,7 +69,7 @@ module.exports = async () => {
     1000,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/item/133877/3/133877308_1GG.jpg',
-    5
+    [5, 6]
   )
   await productService.createProduct(
     1,
@@ -79,7 +79,7 @@ module.exports = async () => {
     889,
     20,
     'https://images-americanas.b2w.io/produtos/01/00/oferta/46723/2/46723242_1GG.jpg',
-    6
+    [6]
   )
 
   console.log('Product populated')

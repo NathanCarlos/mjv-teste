@@ -23,6 +23,15 @@ router.get('/getById', tokenVerify, async (req, res) => {
   }
 })
 
+router.get('/usersType', async (req, res) => {
+  try {
+    const response = await UserService.getUsersType()
+    res.status(200).send(response)
+  } catch (err) {
+    res.send(err)
+  }
+})
+
 router.post('/create', async (req, res) => {
   try {
     let response = await UserService.createUser(
