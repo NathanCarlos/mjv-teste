@@ -21,6 +21,15 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.get('/description/:description', async (req, res) => {
+  try {
+    const response = await ProductService.getProductByDescription(req.params.description)
+    res.status(200).send(response)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+})
+
 router.get('/category/:id', async (req, res) => {
   try {
     const response = await ProductService.getProductsByCategoryId(req.params.id)
