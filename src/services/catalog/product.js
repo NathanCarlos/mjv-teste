@@ -1,7 +1,9 @@
 const Product = require('../../models/catalog/product')
 const Sequelize = require('../../../database/sequelize')
+const sqlize = require('sequelize')
 const CategoryProduct = require('../../models/catalog/category_product')
 const CategoryProductServices = require('./categoryProduct')
+const Op = sqlize.Op
 
 class ProductServices {
   static async getProducts () {
@@ -16,6 +18,18 @@ class ProductServices {
   static async getProductById (id) {
     try {
       const response = await Product.findByPk(id)
+      return response
+    } catch (err) {
+      throw err.message
+    }
+  }
+
+  static async getProductByDescription (description) {
+    try {
+      description = description.toLowerCase()
+      const response = await Product.findAll({
+        where: { name: { [Op.like]: `%${description}%` } }
+      })
       return response
     } catch (err) {
       throw err.message
